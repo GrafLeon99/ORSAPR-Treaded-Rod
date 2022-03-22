@@ -5,7 +5,7 @@ using System;
 namespace PluginTests
 {
     [TestFixture]
-    public class Tests
+    public class ModelParametersTests
     {
 
         [Test(Description = "Позитивный тест сеттеров и геттеров")]

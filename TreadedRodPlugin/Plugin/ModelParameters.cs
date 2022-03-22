@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Plugin
 {
+    /// <summary>
+    /// Класс, хранящий параметры модели
+    /// </summary>
     public class ModelParameters
     {
         /// <summary>
@@ -11,24 +14,12 @@ namespace Plugin
         private readonly Dictionary<ParameterNameTypes, Parameter> _modelParameters;
 
         /// <summary>
-		/// Устанавливает значечие параметра
+		/// Устанавливает значечие параметра, проверяя значения зависимых параметров
 		/// </summary>
         /// <param name="parameterName"> Имя параметра </param>
         /// <param name="value"> Значение параметра </param>
         public void SetValue(ParameterNameTypes parameterName, double value)
         {
-            double maxValue = _modelParameters[parameterName].MaxValue;
-            double minValue = _modelParameters[parameterName].MinValue;
-
-            if (!Validator.IsInRange(value, minValue, maxValue))
-            {
-                throw new ArgumentException
-                    (
-                    "Значение должно быть в диапазоне " +
-                    minValue.ToString() + " - " + maxValue.ToString()
-                    );
-            }
-
             switch (parameterName)
             {
                 case ParameterNameTypes.MainDiameter:
@@ -139,6 +130,7 @@ namespace Plugin
             }
 
             _modelParameters[parameterName].Value = value;
+
         }
 
         /// <summary>
