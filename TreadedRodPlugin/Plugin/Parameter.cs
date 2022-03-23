@@ -22,6 +22,30 @@ namespace Plugin
 		private double _value;
 
 		/// <summary>
+		/// Значение параметра по умолчанию.
+		/// </summary>
+		private double _defaultValue;
+
+		/// <summary>
+		/// Возвращает и устанавливает значение параметра по умолчанию.
+		/// </summary>
+		public double DefaultValue
+		{
+			get { return _defaultValue; }
+			set
+			{
+				if (!Validator.IsInRange(value, MinValue, MaxValue))
+				{
+					throw new ArgumentException
+						(
+						"Значение должно быть в диапазоне " +
+						MinValue.ToString() + " - " + MaxValue.ToString()
+						);
+				}
+				_defaultValue = value;
+			}
+		}
+		/// <summary>
 		/// Возвращает и устанавливает значение параметра.
 		/// </summary>
 		public double Value 
@@ -80,6 +104,23 @@ namespace Plugin
 		{
 			MinValue = minValue;
 			MaxValue = maxValue;
+			Value = value;
+			DefaultValue = value;
+		}
+
+		/// <summary>
+		/// Конструктор параметра.
+		/// </summary>
+		/// <param name="value">Значение</param>
+		/// <param name="minValue">Минимальное значение</param>
+		/// <param name="maxValue">Максимальное значение</param>
+		/// <param name="defaultValue">Значение, по умолчанию</param>
+		public Parameter(double value,
+			double minValue, double maxValue, double defaultValue)
+		{
+			MinValue = minValue;
+			MaxValue = maxValue;
+			DefaultValue = defaultValue;
 			Value = value;
 		}
 	}

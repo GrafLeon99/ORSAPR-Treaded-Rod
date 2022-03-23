@@ -7,6 +7,34 @@ namespace PluginTests
     [TestFixture]
     public class ModelParametersTests
     {
+        [Test(Description = "Позитивный тест конструктора со значениями по умолчанию")]
+        public void Test_ModelParameters_CorrectValue()
+        {
+            //Arrange
+            double mainDiameter = 14;
+            double nutDiameter = 8;
+            double boltDiameter = 12;
+            double mainLength = 60;
+            double nutLength = 40;
+            double boltLength = 24;
+            double nutStep = 1;
+            double boltStep = 1;
+            bool isChamfer = false;
+            //Act
+            var parameters = new ModelParameters();
+
+            //Assert
+            Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.MainDiameter), mainDiameter);
+            Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.NutDiameter), nutDiameter);
+            Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.BoltDiameter), boltDiameter);
+            Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.MainLength), mainLength);
+            Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.NutLength), nutLength);
+            Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.BoltLength), boltLength);
+            Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.NutStep), nutStep);
+            Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.BoltStep), boltStep);
+            Assert.AreEqual(parameters.IsChamfer, isChamfer);
+        }
+
 
         [Test(Description = "Позитивный тест сеттеров и геттеров")]
         public void Test_SetValue_CorrectValue()
@@ -18,6 +46,9 @@ namespace PluginTests
             double mainLength = 60;
             double nutLength = 30;
             double boltLength = 24;
+            double nutStep = 1;
+            double boltStep = 1;
+            bool isChamfer = true;
 
             //Act
             var parameters = new ModelParameters();
@@ -27,6 +58,9 @@ namespace PluginTests
             parameters.SetValue(ParameterNameTypes.MainLength, mainLength);
             parameters.SetValue(ParameterNameTypes.NutLength, nutLength);
             parameters.SetValue(ParameterNameTypes.BoltLength, boltLength);
+            parameters.SetValue(ParameterNameTypes.NutStep, nutStep);
+            parameters.SetValue(ParameterNameTypes.BoltStep, boltStep);
+            parameters.IsChamfer = isChamfer;
 
             //Assert
             Assert.AreEqual(parameters.GetValue(ParameterNameTypes.MainDiameter), mainDiameter);
@@ -35,6 +69,9 @@ namespace PluginTests
             Assert.AreEqual(parameters.GetValue(ParameterNameTypes.MainLength), mainLength);
             Assert.AreEqual(parameters.GetValue(ParameterNameTypes.NutLength), nutLength);
             Assert.AreEqual(parameters.GetValue(ParameterNameTypes.BoltLength), boltLength);
+            Assert.AreEqual(parameters.GetValue(ParameterNameTypes.NutStep), nutStep);
+            Assert.AreEqual(parameters.GetValue(ParameterNameTypes.BoltStep), boltStep);
+            Assert.AreEqual(parameters.IsChamfer, isChamfer);
         }
 
         [TestCase(ParameterNameTypes.MainDiameter, 0, Description = "MainDiameter меньше допустимого")]

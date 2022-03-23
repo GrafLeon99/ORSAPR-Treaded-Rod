@@ -14,7 +14,7 @@ namespace Kompas
         /// <summary>
         /// Шаг резьбы по умолчанию
         /// </summary>
-        private const double DEFAULT_TREAD_STEP = 1.0;
+        private const double DefaultStep = 1.0;
 
         /// <summary>
         /// Объект API КОМПАС-3D
@@ -27,7 +27,7 @@ namespace Kompas
         private ksPart _part;
 
         /// <summary>
-        /// Подключиться к открытому компас-3D.
+        /// Подключается к открытому компас-3D.
         /// </summary>
         private void ConnectKompass()
         {
@@ -49,7 +49,7 @@ namespace Kompas
         }
 
         /// <summary>
-        /// Создать новую деталь в компас-3D
+        /// Создаёт новую деталь в компас-3D
         /// </summary>
         private void CreateNewDetail()
         {
@@ -59,21 +59,21 @@ namespace Kompas
         }
 
         /// <summary>
-        /// Создать новый эскиз
+        /// Создаёт новый эскиз
         /// </summary>
         /// <param name="planeType">Плоскость, в которой выполняется построение</param>
         /// <param name="offset">Смещение плоскости по оси</param>
         /// <returns cref="ksSketchDefinition">Объект свойств эскиза</returns>
         private ksSketchDefinition CreateSketch(Obj3dType planeType, double offset = 0)
         {
-            var plan = (ksEntity)_part.GetDefaultEntity((short)planeType);
+            var plane = (ksEntity)_part.GetDefaultEntity((short)planeType);
             var sketch = (ksEntity)_part.NewEntity((short)Obj3dType.o3d_sketch);
             var sketchDefinition = (ksSketchDefinition)sketch.GetDefinition();
-            sketchDefinition.SetPlane(plan);
+            sketchDefinition.SetPlane(plane);
             var offsetEntity = (ksEntity)_part.NewEntity((short)Obj3dType.o3d_planeOffset);
             var offsetDef = (ksPlaneOffsetDefinition)offsetEntity
                 .GetDefinition();
-            offsetDef.SetPlane(plan);
+            offsetDef.SetPlane(plane);
             offsetDef.offset = offset;
             offsetDef.direction = true;
             offsetEntity.Create();
@@ -83,31 +83,47 @@ namespace Kompas
         }
 
         /// <summary>
-        /// Создать конструктивный элемент шпильки
+        /// Создаёт конструктивный элемент шпильки
         /// </summary>
         /// <param name="diameter">Диаметр</param>
         /// <param name="length">Длина</param>
-        /// <param name="offset">Смещение по оси</param>
+        /// <param name="offset">Смещение по оси вращения</param>
         /// <param name="isTreaded">Присутствует резьба</param>
-        public void CreateElement(double diameter,
-            double length, double offset,bool isTreaded = false)
+        /// <param name="isChamfer">Присутствует фаска</param>
+        /// <param name="isChamferReveseSide">Фаска на обратной стороне</param>
+        /// <param name="step">Шаг резьбы</param>
+        public void CreateElement(double diameter,double length, double offset,
+            bool isTreaded = false, bool isChamfer = false, bool isChamferReveseSide = false, double step = DefaultStep)
         {
             Obj3dType horizontalPlane = Obj3dType.o3d_planeXOY;
             Obj3dType verticalPlane = Obj3dType.o3d_planeXOZ;
             ksSketchDefinition circle = CreateCircle(
                 horizontalPlane, offset, diameter);
             ExtrudeCircle(circle, length);
+            if (isChamfer)
+            {
+                double ChamferOffset = offset;
+                if (isChamferReveseSide)
+                {
+                    ChamferOffset += length;
+                }
+                ksEntityCollection faceCollection =
+                (ksEntityCollection)_part.EntityCollection((short)ksObj3dTypeEnum.o3d_edge);
+                faceCollection.SelectByPoint(diameter / 2, 0, ChamferOffset);
+                ksEntity baseFace = (ksEntity)faceCollection.First();
+                CreateChamfer(baseFace, step);
+            }
             if (isTreaded)
             {
                 ksSketchDefinition tread = CreateTread(
-                    verticalPlane, offset, diameter, DEFAULT_TREAD_STEP);
-                ksEntity spiral = CreateSpiral(circle, length, DEFAULT_TREAD_STEP);
+                    verticalPlane, offset, diameter, step);
+                ksEntity spiral = CreateSpiral(circle, length, step);
                 CutTread(tread, spiral);
             }
         }
 
         /// <summary>
-        /// Создать эскиз окружности
+        /// Создаёт эскиз окружности
         /// </summary>
         /// <param name="basePlane">Плоскость построения</param>
         /// <param name="offset">Смещение по оси</param>
@@ -123,7 +139,7 @@ namespace Kompas
         }
 
         /// <summary>
-        /// Создать эскиз сечения резьбы
+        /// Создаёт эскиз сечения резьбы
         /// </summary>
         /// <param name="basePlane">Плоскость построения</param>
         /// <param name="offset">Смещение по оси</param>
@@ -147,7 +163,7 @@ namespace Kompas
         }
 
         /// <summary>
-        /// Создать объект спирали
+        /// Создаёт объект спирали
         /// </summary>
         /// <param name="circle">Cвойства эскиза окружности</param>
         /// <param name="length">Длина</param>
@@ -172,7 +188,7 @@ namespace Kompas
         }
 
         /// <summary>
-        /// Вырезать резьбу
+        /// Вырезает резьбу по спирали
         /// </summary>
         /// <param name="sketch">Cвойства эскиза сечения</param>
         /// <param name="spiral">Объект спирали</param>
@@ -190,7 +206,7 @@ namespace Kompas
         }
 
         /// <summary>
-        /// Выдавить цилиндр
+        /// Выдавливает цилиндр
         /// </summary>
         /// <param name="sketch">Cвойства эскиза окружности</param>
         /// <param name="length">Длина цилиндра</param>
@@ -203,6 +219,25 @@ namespace Kompas
             extrusionDef.SetSideParam(true, (short)End_Type.etBlind, length);
             extrusionDef.SetSketch(sketch);
             extrusionEntity.Create();
+        }
+
+        /// <summary>
+        /// Добавляет фаску 45о на грань
+        /// </summary>
+        /// <param name="face">Грань</param>
+        /// <param name="length">Размер фаски</param>
+        private void CreateChamfer(ksEntity face, double length)
+        {
+            ksEntity chamfer = (ksEntity)_part.NewEntity((short)ksObj3dTypeEnum.o3d_chamfer);
+            ksChamferDefinition chamferDefinition = (ksChamferDefinition)chamfer.GetDefinition();
+
+            chamferDefinition.tangent = false;
+            chamferDefinition.SetChamferParam(true, length, length);
+
+            ksEntityCollection entityCollectionChamfer = (ksEntityCollection)chamferDefinition.array();
+            entityCollectionChamfer.Add(face);
+
+            chamfer.Create();
         }
 
         /// <summary>

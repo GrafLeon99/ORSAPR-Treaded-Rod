@@ -29,5 +29,13 @@
         /// Длина ввинчиваемой резьбы
         /// </summary>
         BoltLength,
+        /// <summary>
+        /// Шаг ввинчиваемой резьбы
+        /// </summary>
+        BoltStep,
+        /// <summary>
+        /// Шаг гаечной резьбы
+        /// </summary>
+        NutStep,
     }
 }

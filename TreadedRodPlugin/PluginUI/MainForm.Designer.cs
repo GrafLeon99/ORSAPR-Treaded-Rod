@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.BuildButton = new System.Windows.Forms.Button();
+            this.ButtonDefault = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.parameterBoxBoltLength = new PluginUI.ParameterBox();
             this.parameterBoxBoltDiameter = new PluginUI.ParameterBox();
@@ -37,18 +39,43 @@
             this.parameterBoxNutDiameter = new PluginUI.ParameterBox();
             this.parameterBoxMainLength = new PluginUI.ParameterBox();
             this.parameterBoxMainDiameter = new PluginUI.ParameterBox();
+            this.parameterBoxBoltStep = new PluginUI.ParameterBox();
+            this.parameterBoxNutStep = new PluginUI.ParameterBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // BuildButton
             // 
-            this.BuildButton.Location = new System.Drawing.Point(319, 537);
+            this.BuildButton.Location = new System.Drawing.Point(253, 678);
             this.BuildButton.Name = "BuildButton";
-            this.BuildButton.Size = new System.Drawing.Size(75, 23);
+            this.BuildButton.Size = new System.Drawing.Size(139, 23);
             this.BuildButton.TabIndex = 1;
             this.BuildButton.Text = "Построить";
             this.BuildButton.UseVisualStyleBackColor = true;
             this.BuildButton.Click += new System.EventHandler(this.BuildButton_Click);
+            // 
+            // ButtonDefault
+            // 
+            this.ButtonDefault.Location = new System.Drawing.Point(12, 677);
+            this.ButtonDefault.Name = "ButtonDefault";
+            this.ButtonDefault.Size = new System.Drawing.Size(139, 23);
+            this.ButtonDefault.TabIndex = 42;
+            this.ButtonDefault.Text = "Значения по умолчанию";
+            this.ButtonDefault.UseVisualStyleBackColor = true;
+            this.ButtonDefault.Click += new System.EventHandler(this.ButtonDefault_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox1.Location = new System.Drawing.Point(12, 654);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(61, 17);
+            this.checkBox1.TabIndex = 47;
+            this.checkBox1.Text = "Фаска";
+            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox_CheckedChanged);
             // 
             // pictureBox1
             // 
@@ -64,7 +91,7 @@
             // parameterBoxBoltLength
             // 
             this.parameterBoxBoltLength.ErrorMessage = "";
-            this.parameterBoxBoltLength.Location = new System.Drawing.Point(12, 472);
+            this.parameterBoxBoltLength.Location = new System.Drawing.Point(10, 472);
             this.parameterBoxBoltLength.Name = "parameterBoxBoltLength";
             this.parameterBoxBoltLength.Parameter = 0D;
             this.parameterBoxBoltLength.ParameterName = Plugin.ParameterNameTypes.BoltLength;
@@ -126,13 +153,40 @@
             this.parameterBoxMainDiameter.Size = new System.Drawing.Size(382, 53);
             this.parameterBoxMainDiameter.TabIndex = 36;
             this.parameterBoxMainDiameter.ParameterChanged += new System.EventHandler(this.ParameterBox_ParameterChanged);
+            this.parameterBoxMainDiameter.Load += new System.EventHandler(this.parameterBoxMainDiameter_Load);
+            // 
+            // parameterBoxBoltStep
+            // 
+            this.parameterBoxBoltStep.ErrorMessage = "";
+            this.parameterBoxBoltStep.Location = new System.Drawing.Point(10, 531);
+            this.parameterBoxBoltStep.Name = "parameterBoxBoltStep";
+            this.parameterBoxBoltStep.Parameter = 0D;
+            this.parameterBoxBoltStep.ParameterName = Plugin.ParameterNameTypes.BoltStep;
+            this.parameterBoxBoltStep.Size = new System.Drawing.Size(382, 53);
+            this.parameterBoxBoltStep.TabIndex = 50;
+            this.parameterBoxBoltStep.ParameterChanged += new System.EventHandler(this.ParameterBox_ParameterChanged);
+            // 
+            // parameterBoxNutStep
+            // 
+            this.parameterBoxNutStep.ErrorMessage = "";
+            this.parameterBoxNutStep.Location = new System.Drawing.Point(10, 590);
+            this.parameterBoxNutStep.Name = "parameterBoxNutStep";
+            this.parameterBoxNutStep.Parameter = 0D;
+            this.parameterBoxNutStep.ParameterName = Plugin.ParameterNameTypes.NutStep;
+            this.parameterBoxNutStep.Size = new System.Drawing.Size(382, 53);
+            this.parameterBoxNutStep.TabIndex = 51;
+            this.parameterBoxNutStep.ParameterChanged += new System.EventHandler(this.ParameterBox_ParameterChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ClientSize = new System.Drawing.Size(401, 573);
+            this.ClientSize = new System.Drawing.Size(404, 713);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.parameterBoxNutStep);
+            this.Controls.Add(this.parameterBoxBoltStep);
+            this.Controls.Add(this.ButtonDefault);
             this.Controls.Add(this.parameterBoxBoltLength);
             this.Controls.Add(this.parameterBoxBoltDiameter);
             this.Controls.Add(this.parameterBoxNutLength);
@@ -147,6 +201,7 @@
             this.Text = "Резьбовая шпилька";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -159,6 +214,10 @@
         private ParameterBox parameterBoxNutLength;
         private ParameterBox parameterBoxBoltDiameter;
         private ParameterBox parameterBoxBoltLength;
+        private System.Windows.Forms.Button ButtonDefault;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private ParameterBox parameterBoxBoltStep;
+        private ParameterBox parameterBoxNutStep;
     }
 }
 

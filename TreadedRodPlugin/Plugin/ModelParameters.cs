@@ -9,9 +9,23 @@ namespace Plugin
     public class ModelParameters
     {
         /// <summary>
-		/// Словарь параметров детали
+		/// Словарь числовых параметров модели
 		/// </summary>
         private readonly Dictionary<ParameterNameTypes, Parameter> _modelParameters;
+
+        /// <summary>
+		/// параметр модели, отвечающий за нанесение фаски.
+		/// </summary>
+        private bool _isChamfer;
+
+        /// <summary>
+		/// устанавливает и возвращает значение параметра, отвечающего за нанесение фаски.
+		/// </summary>
+        public bool IsChamfer 
+        { 
+            get { return _isChamfer; }
+            set { _isChamfer = value; }
+        }
 
         /// <summary>
 		/// Устанавливает значечие параметра, проверяя значения зависимых параметров
@@ -127,6 +141,14 @@ namespace Plugin
                         }
                         break;
                     }
+                case ParameterNameTypes.BoltStep:
+                    {
+                        break;
+                    }
+                case ParameterNameTypes.NutStep:
+                    {
+                        break;
+                    }
             }
 
             _modelParameters[parameterName].Value = value;
@@ -134,13 +156,24 @@ namespace Plugin
         }
 
         /// <summary>
-		/// Возращает значение параметра
+		/// Возращает значение параметра.
 		/// </summary>
         /// <param name="parameterName"> Имя параметра </param>
 		/// <returns cref="double">Значение параметра</returns>
         public double GetValue(ParameterNameTypes parameterName)
         {
             return _modelParameters[parameterName].Value;
+        }
+
+
+        /// <summary>
+		/// Возращает значение параметра по умолчанию.
+		/// </summary>
+        /// <param name="parameterName"> Имя параметра </param>
+		/// <returns cref="double">Значение параметра по умолчанию</returns>
+        public double GetDefaultValue(ParameterNameTypes parameterName)
+        {
+            return _modelParameters[parameterName].DefaultValue;
         }
 
         /// <summary>
@@ -162,7 +195,12 @@ namespace Plugin
                 new Parameter(12,4,16)},
                 { ParameterNameTypes.BoltLength,
                 new Parameter(24,8,48)},
+                { ParameterNameTypes.BoltStep,
+                new Parameter(1,0.5,2)},
+                { ParameterNameTypes.NutStep,
+                new Parameter(1,0.5,2)},
             };
+            IsChamfer = false;
         }
     }
 }

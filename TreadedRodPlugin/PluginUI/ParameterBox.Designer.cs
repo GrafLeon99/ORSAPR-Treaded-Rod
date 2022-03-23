@@ -31,7 +31,7 @@
             this.errorLabel = new System.Windows.Forms.Label();
             this.infoLabel = new System.Windows.Forms.Label();
             this.mmLabel = new System.Windows.Forms.Label();
-            this.textBox = new System.Windows.Forms.TextBox();
+            this.textBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // errorLabel
@@ -65,11 +65,23 @@
             // 
             // textBox
             // 
-            this.textBox.Location = new System.Drawing.Point(252, 28);
+            this.textBox.AutoCompleteCustomSource.AddRange(new string[] {
+            "0,5",
+            "1,0",
+            "1,5",
+            "2,0"});
+            this.textBox.FormattingEnabled = true;
+            this.textBox.Items.AddRange(new object[] {
+            "0,5",
+            "1,0",
+            "1,5",
+            "2,0"});
+            this.textBox.Location = new System.Drawing.Point(267, 28);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(100, 20);
-            this.textBox.TabIndex = 3;
-            this.textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.textBox.Size = new System.Drawing.Size(81, 21);
+            this.textBox.TabIndex = 4;
+            this.textBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox_TextChanged);
+            this.textBox.TextChanged += new System.EventHandler(this.ComboBox_TextChanged);
             // 
             // ParameterBox
             // 
@@ -91,6 +103,6 @@
         private System.Windows.Forms.Label errorLabel;
         private System.Windows.Forms.Label infoLabel;
         private System.Windows.Forms.Label mmLabel;
-        private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.ComboBox textBox;
     }
 }
