@@ -18,7 +18,7 @@ namespace Kompas
         private KompasWrapper _kompasWrapper;
 
         /// <summary>
-		/// Создание модели резьбовой шпильки
+		/// Создаёт модель резьбовой шпильки
 		/// </summary>
         public void BuildModel(ModelParameters parameters)
         {

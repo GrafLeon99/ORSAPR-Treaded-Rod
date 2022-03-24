@@ -156,7 +156,7 @@ namespace Plugin
         }
 
         /// <summary>
-		/// Возращает значение параметра.
+		/// Возвращает значение параметра.
 		/// </summary>
         /// <param name="parameterName"> Имя параметра </param>
 		/// <returns cref="double">Значение параметра</returns>
@@ -167,7 +167,7 @@ namespace Plugin
 
 
         /// <summary>
-		/// Возращает значение параметра по умолчанию.
+		/// Возвращает значение параметра по умолчанию.
 		/// </summary>
         /// <param name="parameterName"> Имя параметра </param>
 		/// <returns cref="double">Значение параметра по умолчанию</returns>
@@ -194,7 +194,7 @@ namespace Plugin
                 { ParameterNameTypes.BoltDiameter,
                 new Parameter(12,4,16)},
                 { ParameterNameTypes.BoltLength,
-                new Parameter(24,8,48)},
+                new Parameter(24,12,48)},
                 { ParameterNameTypes.BoltStep,
                 new Parameter(1,0.5,2)},
                 { ParameterNameTypes.NutStep,

@@ -50,7 +50,7 @@ namespace PluginUI
 		{
 			try
 			{
-				if (isErrorPresented())
+				if (IsErrorPresented())
 				{
 					throw new ArgumentException
 					(
@@ -82,7 +82,7 @@ namespace PluginUI
 		/// Возвращает true, если присутствуют ошибки в параметрах.
 		/// </summary>
 		/// <returns cref="bool"></returns>
-		private bool isErrorPresented()
+		private bool IsErrorPresented()
 		{
 			foreach (ParameterBox parameterBox in _parameterBoxes)
 			{
@@ -159,16 +159,6 @@ namespace PluginUI
 			SetDefaultParameters();
         }
 
-        private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-			ComboBox comboBox = (ComboBox)sender;
-			string text = comboBox.Text;
-			if (string.IsNullOrEmpty(text))
-			{
-				
-			}
-		}
-
 		/// <summary>
 		/// Обрабатывает событие переключения чекбокса "фаска".
 		/// </summary>
@@ -179,10 +169,5 @@ namespace PluginUI
 			CheckBox checkBox = (CheckBox)sender;
 			_modelParameters.IsChamfer = checkBox.Checked;
 		}
-
-        private void parameterBoxMainDiameter_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

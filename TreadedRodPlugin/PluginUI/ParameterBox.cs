@@ -31,8 +31,8 @@ namespace PluginUI
         private const string NutDiameterInfo = "Диаметр гаечной резьбы (4 < D1 < 16)";
         private const string BoltLengthInfo = "Длина ввинчиваемой резьбы (12 < L0 < 48)";
         private const string BoltDiameterInfo = "Диаметр ввинчиваемой резьбы (4 < D0 < 16)";
-        private const string NutStepInfo = "Шаг гаечной резьбы (12 < L0 < 48)";
-        private const string BoltStepInfo = "Шаг ввинчиваемой резьбы (4 < D0 < 16)";
+        private const string NutStepInfo = "Шаг гаечной резьбы (0,5 < S1 < 2)";
+        private const string BoltStepInfo = "Шаг ввинчиваемой резьбы (0,5 < S0 < 2)";
 
         /// <summary>
 		/// Имя параметра

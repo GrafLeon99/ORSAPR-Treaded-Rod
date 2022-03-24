@@ -153,7 +153,6 @@
             this.parameterBoxMainDiameter.Size = new System.Drawing.Size(382, 53);
             this.parameterBoxMainDiameter.TabIndex = 36;
             this.parameterBoxMainDiameter.ParameterChanged += new System.EventHandler(this.ParameterBox_ParameterChanged);
-            this.parameterBoxMainDiameter.Load += new System.EventHandler(this.parameterBoxMainDiameter_Load);
             // 
             // parameterBoxBoltStep
             // 
