@@ -7,6 +7,7 @@ namespace PluginTests
     [TestFixture]
     public class ModelParametersTests
     {
+        //TODO: UTF8?
 
         [Test(Description = "ѕозитивный тест сеттеров и геттеров")]
         public void Test_SetValue_CorrectValue()
@@ -37,6 +38,7 @@ namespace PluginTests
             Assert.AreEqual(parameters.GetValue(ParameterNameTypes.BoltLength), boltLength);
         }
 
+        //TODO: UTF8?
         [TestCase(ParameterNameTypes.MainDiameter, 0, Description = "MainDiameter меньше допустимого")]
         [TestCase(ParameterNameTypes.NutDiameter, 0, Description = "NutDiameter меньше допустимого")]
         [TestCase(ParameterNameTypes.BoltDiameter, 0, Description = "BoltDiameter меньше допустимого")]
@@ -50,7 +52,7 @@ namespace PluginTests
         [TestCase(ParameterNameTypes.NutLength, 120, Description = "NutLength больше допустимого")]
         [TestCase(ParameterNameTypes.BoltLength, 120, Description = "BoltLength больше допустимого")]
 
-        
+        //TODO:
         [Test(Description = "Ќегативный тест сеттера")]
         public void Test_SetValue_IncorrectValue(ParameterNameTypes parameter, double value)
         {
@@ -70,7 +72,7 @@ namespace PluginTests
         [TestCase(ParameterNameTypes.MainLength, 15,16, Description = "MainLength меньше MainDiameter")]
         [TestCase(ParameterNameTypes.NutLength, 15, 16, Description = "NutLength меньше NutDiameter")]
         [TestCase(ParameterNameTypes.BoltLength, 15, 16, Description = "BoltLength меньше BoltDiameter")]
-
+        //TODO: UTF8?
         [Test(Description = "Ќегативный тест сеттера дл€ зависимости длина-диаметр")]
         public void Test_SetValue_IncorrectDependedDiameterValue(ParameterNameTypes parameter, double value, double dependentValue)
         {
@@ -112,8 +114,9 @@ namespace PluginTests
         [TestCase(ParameterNameTypes.NutLength, 50, 40, Description = "NutLength больше MainLength")]
         [TestCase(ParameterNameTypes.MainDiameter, 12, 13, Description = "MainDiameter меньше NutDiameter")]
         [TestCase(ParameterNameTypes.NutDiameter, 13, 12, Description = "NutDiameter больше MainDiameter")]
-
+        //TODO: UTF8?
         [Test(Description = "Ќегативный тест сеттера дл€ зависимости длина-длина/диметр-диаметр")]
+        //TODO: RSDN
         public void Test_SetValue_IncorrectDependedLengthValue(ParameterNameTypes parameter, double value, double dependentValue)
         {
             //Arrange

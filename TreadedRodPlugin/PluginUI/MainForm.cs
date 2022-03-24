@@ -76,6 +76,7 @@ namespace PluginUI
 			MessageBox.Show(message, caption, buttons);
 		}
 
+		//TODO: RSDN
 		/// <summary>
 		/// Возвращает true, если присутствуют ошибки в параметрах.
 		/// </summary>
