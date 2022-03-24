@@ -7,7 +7,7 @@ namespace PluginTests
     [TestFixture]
     public class ModelParametersTests
     {
-        [Test(Description = "Позитивный тест конструктора со значениями по умолчанию")]
+        [Test(Description = "ГЏГ®Г§ГЁГІГЁГўГ­Г»Г© ГІГҐГ±ГІ ГЄГ®Г­Г±ГІГ°ГіГЄГІГ®Г°Г  Г±Г® Г§Г­Г Г·ГҐГ­ГЁГїГ¬ГЁ ГЇГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ")]
         public void Test_ModelParameters_CorrectValue()
         {
             //Arrange
@@ -34,9 +34,9 @@ namespace PluginTests
             Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.BoltStep), boltStep);
             Assert.AreEqual(parameters.IsChamfer, isChamfer);
         }
+        //TODO: UTF8?
 
-
-        [Test(Description = "Позитивный тест сеттеров и геттеров")]
+        [Test(Description = "ГЏГ®Г§ГЁГІГЁГўГ­Г»Г© ГІГҐГ±ГІ Г±ГҐГІГІГҐГ°Г®Гў ГЁ ГЈГҐГІГІГҐГ°Г®Гў")]
         public void Test_SetValue_CorrectValue()
         {
             //Arrange
@@ -74,33 +74,34 @@ namespace PluginTests
             Assert.AreEqual(parameters.IsChamfer, isChamfer);
         }
 
+        //TODO: UTF8?
         [TestCase(ParameterNameTypes.MainDiameter, 0, 
-            Description = "MainDiameter меньше допустимого")]
+            Description = "MainDiameter Г¬ГҐГ­ГјГёГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г®ГЈГ®")]
         [TestCase(ParameterNameTypes.NutDiameter, 0, 
-            Description = "NutDiameter меньше допустимого")]
+            Description = "NutDiameter Г¬ГҐГ­ГјГёГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г®ГЈГ®")]
         [TestCase(ParameterNameTypes.BoltDiameter, 0, 
-            Description = "BoltDiameter меньше допустимого")]
+            Description = "BoltDiameter Г¬ГҐГ­ГјГёГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г®ГЈГ®")]
         [TestCase(ParameterNameTypes.MainLength, 0, 
-            Description = "MainLength меньше допустимого")]
+            Description = "MainLength Г¬ГҐГ­ГјГёГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г®ГЈГ®")]
         [TestCase(ParameterNameTypes.NutLength, 0, 
-            Description = "NutLength меньше допустимого")]
+            Description = "NutLength Г¬ГҐГ­ГјГёГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г®ГЈГ®")]
         [TestCase(ParameterNameTypes.BoltLength, 0, 
-            Description = "BoltLength меньше допустимого")]
+            Description = "BoltLength Г¬ГҐГ­ГјГёГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г®ГЈГ®")]
         [TestCase(ParameterNameTypes.MainDiameter, 120, 
-            Description = "MainDiameter больше допустимого")]
+            Description = "MainDiameter ГЎГ®Г«ГјГёГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г®ГЈГ®")]
         [TestCase(ParameterNameTypes.NutDiameter, 60, 
-            Description = "NutDiameter больше допустимого")]
+            Description = "NutDiameter ГЎГ®Г«ГјГёГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г®ГЈГ®")]
         [TestCase(ParameterNameTypes.BoltDiameter, 60, 
-            Description = "BoltDiameter больше допустимого")]
+            Description = "BoltDiameter ГЎГ®Г«ГјГёГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г®ГЈГ®")]
         [TestCase(ParameterNameTypes.MainLength, 120, 
-            Description = "MainLength больше допустимого")]
+            Description = "MainLength ГЎГ®Г«ГјГёГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г®ГЈГ®")]
         [TestCase(ParameterNameTypes.NutLength, 120, 
-            Description = "NutLength больше допустимого")]
+            Description = "NutLength ГЎГ®Г«ГјГёГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г®ГЈГ®")]
         [TestCase(ParameterNameTypes.BoltLength, 120, 
-            Description = "BoltLength больше допустимого")]
+            Description = "BoltLength ГЎГ®Г«ГјГёГҐ Г¤Г®ГЇГіГ±ГІГЁГ¬Г®ГЈГ®")]
 
-        
-        [Test(Description = "Негативный тест сеттера")]
+        //TODO:
+        [Test(Description = "ГЌГҐГЈГ ГІГЁГўГ­Г»Г© ГІГҐГ±ГІ Г±ГҐГІГІГҐГ°Г ")]
         public void Test_SetValue_IncorrectValue(ParameterNameTypes parameter, double value)
         {
             //Arrange
@@ -114,19 +115,19 @@ namespace PluginTests
         }
 
         [TestCase(ParameterNameTypes.MainDiameter, 16, 15, 
-            Description = "MainDiameter больше MainLength")]
+            Description = "MainDiameter ГЎГ®Г«ГјГёГҐ MainLength")]
         [TestCase(ParameterNameTypes.NutDiameter, 14, 12, 
-            Description = "NutDiameter больше NutLength")]
+            Description = "NutDiameter ГЎГ®Г«ГјГёГҐ NutLength")]
         [TestCase(ParameterNameTypes.BoltDiameter, 16, 15, 
-            Description = "BoltDiameter больше BoltLength")]
+            Description = "BoltDiameter ГЎГ®Г«ГјГёГҐ BoltLength")]
         [TestCase(ParameterNameTypes.MainLength, 15,16, 
-            Description = "MainLength меньше MainDiameter")]
+            Description = "MainLength Г¬ГҐГ­ГјГёГҐ MainDiameter")]
         [TestCase(ParameterNameTypes.NutLength, 15, 16, 
-            Description = "NutLength меньше NutDiameter")]
+            Description = "NutLength Г¬ГҐГ­ГјГёГҐ NutDiameter")]
         [TestCase(ParameterNameTypes.BoltLength, 15, 16, 
-            Description = "BoltLength меньше BoltDiameter")]
+            Description = "BoltLength Г¬ГҐГ­ГјГёГҐ BoltDiameter")]
 
-        [Test(Description = "Негативный тест сеттера для зависимости длина-диаметр")]
+        [Test(Description = "ГЌГҐГЈГ ГІГЁГўГ­Г»Г© ГІГҐГ±ГІ Г±ГҐГІГІГҐГ°Г  Г¤Г«Гї Г§Г ГўГЁГ±ГЁГ¬Г®Г±ГІГЁ Г¤Г«ГЁГ­Г -Г¤ГЁГ Г¬ГҐГІГ°")]
         public void Test_SetValue_IncorrectDependedDiameterValue(
             ParameterNameTypes parameter, double value, double dependentValue)
         {
@@ -165,15 +166,15 @@ namespace PluginTests
         }
 
         [TestCase(ParameterNameTypes.MainLength, 40, 50, 
-            Description = "MainLength меньше NutLength")]
+            Description = "MainLength Г¬ГҐГ­ГјГёГҐ NutLength")]
         [TestCase(ParameterNameTypes.NutLength, 50, 40, 
-            Description = "NutLength больше MainLength")]
+            Description = "NutLength ГЎГ®Г«ГјГёГҐ MainLength")]
         [TestCase(ParameterNameTypes.MainDiameter, 12, 13, 
-            Description = "MainDiameter меньше NutDiameter")]
+            Description = "MainDiameter Г¬ГҐГ­ГјГёГҐ NutDiameter")]
         [TestCase(ParameterNameTypes.NutDiameter, 13, 12, 
-            Description = "NutDiameter больше MainDiameter")]
+            Description = "NutDiameter ГЎГ®Г«ГјГёГҐ MainDiameter")]
 
-        [Test(Description = "Негативный тест сеттера для зависимости длина-длина/диметр-диаметр")]
+        [Test(Description = "ГЌГҐГЈГ ГІГЁГўГ­Г»Г© ГІГҐГ±ГІ Г±ГҐГІГІГҐГ°Г  Г¤Г«Гї Г§Г ГўГЁГ±ГЁГ¬Г®Г±ГІГЁ Г¤Г«ГЁГ­Г -Г¤Г«ГЁГ­Г /Г¤ГЁГ¬ГҐГІГ°-Г¤ГЁГ Г¬ГҐГІГ°")]
         public void Test_SetValue_IncorrectDependedLengthValue(
             ParameterNameTypes parameter, double value, double dependentValue)
         {

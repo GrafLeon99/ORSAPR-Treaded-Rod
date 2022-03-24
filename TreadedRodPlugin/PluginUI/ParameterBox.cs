@@ -9,6 +9,7 @@ namespace PluginUI
     /// </summary>
     public partial class ParameterBox : UserControl
     {
+        //TODO: RSDN
         /// <summary>
         /// Сообщение об отсутствии ошибки
         /// </summary>
@@ -22,9 +23,11 @@ namespace PluginUI
         /// </summary>
         public const string nonDoubleError = "Значение должно быть числом.";
 
+
         /// <summary>
         /// Название поля ввода
         /// </summary>
+        //TODO: в модель
         private const string MainLengthInfo = "Длина шпильки (8 < L < 100)";
         private const string MainDiameterInfo = "Диаметр шпильки (4 < D < 16)";
         private const string NutLengthInfo = "Длина  гаечной резьбы (8 < L1 < 100)";
@@ -161,6 +164,7 @@ namespace PluginUI
             ErrorMessage = noError;
         }
 
+        //TODO: RSDN
         /// <summary>
 		/// Обрабатывает событие изменения текста в textBox
 		/// </summary>
@@ -195,7 +199,7 @@ namespace PluginUI
             
             if (ParameterChanged != null)
             {
-                ParameterChanged(this, new EventArgs());
+                ParameterChanged(this, EventArgs.Empty);
             }
         }
     }

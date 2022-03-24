@@ -138,6 +138,7 @@ namespace Kompas
             return sketch;
         }
 
+        //TODO: XML
         /// <summary>
         /// Создаёт эскиз сечения резьбы
         /// </summary>
@@ -162,6 +163,7 @@ namespace Kompas
             return sketch;
         }
 
+        //TODO: XML
         /// <summary>
         /// Создаёт объект спирали
         /// </summary>
