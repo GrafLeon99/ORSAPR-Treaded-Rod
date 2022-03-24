@@ -34,6 +34,8 @@ namespace PluginUI
 				parameterBoxNutLength,
 				parameterBoxBoltDiameter,
 				parameterBoxBoltLength,
+				parameterBoxBoltStep,
+				parameterBoxNutStep,
 			};
 
 			SetDefaultParameters();
@@ -48,7 +50,7 @@ namespace PluginUI
 		{
 			try
 			{
-				if (isErrorPresented())
+				if (IsErrorPresented())
 				{
 					throw new ArgumentException
 					(
@@ -81,7 +83,7 @@ namespace PluginUI
 		/// Возвращает true, если присутствуют ошибки в параметрах.
 		/// </summary>
 		/// <returns cref="bool"></returns>
-		private bool isErrorPresented()
+		private bool IsErrorPresented()
 		{
 			foreach (ParameterBox parameterBox in _parameterBoxes)
 			{
@@ -101,8 +103,10 @@ namespace PluginUI
 			foreach (ParameterBox parameterBox in _parameterBoxes)
 			{
 				ParameterNameTypes parameterName = parameterBox.ParameterName;
-				parameterBox.Parameter = _modelParameters.GetValue(parameterName);
+				parameterBox.Parameter = _modelParameters.GetDefaultValue(parameterName);
 			}
+			ValidateAllParameters();
+			checkBox1.Checked = false;
 		}
 
 		/// <summary>
@@ -145,6 +149,26 @@ namespace PluginUI
 			}
 			parameterBox.ErrorMessage = errorMessage;
 		}
-		
-	}
+
+		/// <summary>
+		/// Обрабатывает событие нажатия на кнопку "значения по умолчанию".
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void ButtonDefault_Click(object sender, EventArgs e)
+        {
+			SetDefaultParameters();
+        }
+
+		/// <summary>
+		/// Обрабатывает событие переключения чекбокса "фаска".
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+			CheckBox checkBox = (CheckBox)sender;
+			_modelParameters.IsChamfer = checkBox.Checked;
+		}
+    }
 }

@@ -23,13 +23,19 @@ namespace PluginUI
         /// </summary>
         public const string nonDoubleError = "Значение должно быть числом.";
 
+
+        /// <summary>
+        /// Название поля ввода
+        /// </summary>
         //TODO: в модель
         private const string MainLengthInfo = "Длина шпильки (8 < L < 100)";
         private const string MainDiameterInfo = "Диаметр шпильки (4 < D < 16)";
         private const string NutLengthInfo = "Длина  гаечной резьбы (8 < L1 < 100)";
         private const string NutDiameterInfo = "Диаметр гаечной резьбы (4 < D1 < 16)";
-        private const string BoltLengthInfo = "Длина  ввинчиваемой резьбы (12 < L0 < 48)";
+        private const string BoltLengthInfo = "Длина ввинчиваемой резьбы (12 < L0 < 48)";
         private const string BoltDiameterInfo = "Диаметр ввинчиваемой резьбы (4 < D0 < 16)";
+        private const string NutStepInfo = "Шаг гаечной резьбы (0,5 < S1 < 2)";
+        private const string BoltStepInfo = "Шаг ввинчиваемой резьбы (0,5 < S0 < 2)";
 
         /// <summary>
 		/// Имя параметра
@@ -52,31 +58,49 @@ namespace PluginUI
                     case ParameterNameTypes.MainDiameter:
                         {
                             infoLabel.Text = MainDiameterInfo;
+                            textBox.DropDownStyle = ComboBoxStyle.Simple;
                             break;
                         }
                     case ParameterNameTypes.BoltDiameter:
                         {
                             infoLabel.Text = BoltDiameterInfo;
+                            textBox.DropDownStyle = ComboBoxStyle.Simple;
                             break;
                         }
                     case ParameterNameTypes.NutDiameter:
                         {
                             infoLabel.Text = NutDiameterInfo;
+                            textBox.DropDownStyle = ComboBoxStyle.Simple;
                             break;
                         }
                     case ParameterNameTypes.MainLength:
                         {
                             infoLabel.Text = MainLengthInfo;
+                            textBox.DropDownStyle = ComboBoxStyle.Simple;
                             break;
                         }
                     case ParameterNameTypes.BoltLength:
                         {
                             infoLabel.Text = BoltLengthInfo;
+                            textBox.DropDownStyle = ComboBoxStyle.Simple;
                             break;
                         }
                     case ParameterNameTypes.NutLength:
                         {
                             infoLabel.Text = NutLengthInfo;
+                            textBox.DropDownStyle = ComboBoxStyle.Simple;
+                            break;
+                        }
+                    case ParameterNameTypes.NutStep:
+                        {
+                            infoLabel.Text = NutStepInfo;
+                            textBox.DropDownStyle = ComboBoxStyle.DropDown;
+                            break;
+                        }
+                    case ParameterNameTypes.BoltStep:
+                        {
+                            infoLabel.Text = BoltStepInfo;
+                            textBox.DropDownStyle = ComboBoxStyle.DropDown;
                             break;
                         }
                     default:
@@ -96,7 +120,7 @@ namespace PluginUI
         /// <summary>
 		/// Возвращает и устанавливает числовое значение поля ввода.
 		/// </summary>
-        public double Parameter 
+        public virtual double Parameter 
         { 
             get 
             { 
@@ -144,9 +168,9 @@ namespace PluginUI
         /// <summary>
 		/// Обрабатывает событие изменения текста в textBox
 		/// </summary>
-        private void textBox_TextChanged(object sender, EventArgs e)
+        private void ComboBox_TextChanged(object sender, EventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
+            ComboBox textBox = (ComboBox)sender;
             string text = textBox.Text;
             try
             {
@@ -178,6 +202,5 @@ namespace PluginUI
                 ParameterChanged(this, EventArgs.Empty);
             }
         }
-
-}
+    }
 }

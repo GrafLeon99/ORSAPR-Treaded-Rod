@@ -8,9 +8,9 @@ namespace Kompas
     public class ModelBuilder
     {
         /// <summary>
-        /// Смещение детали по умоляанию
+        /// Смещение детали по умолчанию
         /// </summary>
-        private const double DEFAULT_OFFSET_Y = 0.0;
+        private const double DefaultOffset = 0.0;
 
         /// <summary>
         /// Объект KompasWrapper
@@ -18,7 +18,7 @@ namespace Kompas
         private KompasWrapper _kompasWrapper;
 
         /// <summary>
-		/// Создание модели резьбовой шпильки
+		/// Создаёт модель резьбовой шпильки
 		/// </summary>
         public void BuildModel(ModelParameters parameters)
         {
@@ -36,18 +36,25 @@ namespace Kompas
             double boltLength = parameters.GetValue(
                 ParameterNameTypes.BoltLength);
 
-            double nutOffset = DEFAULT_OFFSET_Y;
+            double boltStep = parameters.GetValue(
+                ParameterNameTypes.BoltStep);
+            double nutStep = parameters.GetValue(
+                ParameterNameTypes.NutStep);
+
+            bool isShamfer = parameters.IsChamfer;
+
+            double nutOffset = DefaultOffset;
             double mainOffset = parameters.GetValue(
                 ParameterNameTypes.NutLength);
             double boltOffset = parameters.GetValue(
                 ParameterNameTypes.MainLength);
 
             _kompasWrapper.CreateElement(nutDiameter,
-                nutLength, nutOffset, true);
+                nutLength, nutOffset, true, isShamfer, false, nutStep);
             _kompasWrapper.CreateElement(mainDiameter,
-                mainLength, mainOffset, false);
+                mainLength, mainOffset);
             _kompasWrapper.CreateElement(boltDiameter,
-                boltLength, boltOffset, true);
+                boltLength, boltOffset, true, isShamfer, true, boltStep);
         }
 
         /// <summary>
