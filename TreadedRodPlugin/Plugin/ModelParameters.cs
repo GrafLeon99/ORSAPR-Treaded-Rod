@@ -177,6 +177,26 @@ namespace Plugin
         }
 
         /// <summary>
+		/// Возвращает минимальное значение параметра.
+		/// </summary>
+        /// <param name="parameterName"> Имя параметра </param>
+		/// <returns cref="double">Значение</returns>
+        public double GetMinValue(ParameterNameTypes parameterName)
+        {
+            return _modelParameters[parameterName].MinValue;
+        }
+
+        /// <summary>
+		/// Возвращает максимальное значение параметра.
+		/// </summary>
+        /// <param name="parameterName"> Имя параметра </param>
+		/// <returns cref="double">Значение</returns>
+        public double GetMaxValue(ParameterNameTypes parameterName)
+        {
+            return _modelParameters[parameterName].MaxValue;
+        }
+
+        /// <summary>
 		/// Конструктор параметров
 		/// </summary>
         public ModelParameters()

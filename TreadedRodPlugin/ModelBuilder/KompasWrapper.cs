@@ -147,14 +147,15 @@ namespace Kompas
         /// <param name="diameter">Диаметр резьбы</param>
         /// <param name="step">Шаг резьбы</param>
         /// <returns cref="ksSketchDefinition">Объект свойств эскиза</returns>
-        private ksSketchDefinition CreateTread(Obj3dType basePlane, double offset, double diameter, double step)
+        private ksSketchDefinition CreateTread(
+            Obj3dType basePlane, double offset, double diameter, double step)
         {
             ksSketchDefinition sketch = CreateSketch(basePlane);
             Document2D document2d = (Document2D)sketch.BeginEdit();
 
             double x = diameter / 2;
             double z = -offset;
-            double treadSize = 1*step;
+            double treadSize = step;
             document2d.ksLineSeg(x, z, x, z + treadSize, 1);
             document2d.ksLineSeg(x, z, x - treadSize, z + treadSize/2, 1);
             document2d.ksLineSeg(x, z + treadSize, x - treadSize, z + treadSize/2, 1);
@@ -171,7 +172,8 @@ namespace Kompas
         /// <param name="length">Длина</param>
         /// <param name="step">Шаг резьбы</param>
         /// <returns cref="ksEntity">Объект спирали</returns>
-        private ksEntity CreateSpiral(ksSketchDefinition circle, double length, double step)
+        private ksEntity CreateSpiral(
+            ksSketchDefinition circle, double length, double step)
         {
             ksEntity conicSpiral =
                  (ksEntity)_part.NewEntity((short)Obj3dType.o3d_cylindricSpiral);

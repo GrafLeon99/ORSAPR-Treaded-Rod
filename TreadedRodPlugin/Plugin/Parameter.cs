@@ -26,6 +26,23 @@ namespace Plugin
 		/// </summary>
 		private double _defaultValue;
 
+		//TODO:
+		/// <summary>
+		/// Проверяет, принадлежит ли значение диапазону.
+		/// </summary>
+		/// <param name="value"> Значение </param>
+		/// <param name="minValue"> Минимальное значение </param>
+		/// <param name="maxValue"> Максимальное значение </param>
+		/// <returns cref="bool">True, если значение принадлежит диапазону, иначе False</returns>
+		private static bool IsInRange(double value, double minValue, double maxValue)
+		{
+			if (value < minValue || value > maxValue)
+			{
+				return false;
+			}
+			return true;
+		}
+
 		/// <summary>
 		/// Возвращает и устанавливает значение параметра по умолчанию.
 		/// </summary>
@@ -34,7 +51,7 @@ namespace Plugin
 			get { return _defaultValue; }
 			set
 			{
-				if (!Validator.IsInRange(value, MinValue, MaxValue))
+				if (!IsInRange(value, MinValue, MaxValue))
 				{
 					throw new ArgumentException
 						(
@@ -53,7 +70,7 @@ namespace Plugin
 			get { return _value; }
 			set 
 			{
-				if (!Validator.IsInRange(value, MinValue, MaxValue))
+				if (!IsInRange(value, MinValue, MaxValue))
 				{
 					throw new ArgumentException
 						(

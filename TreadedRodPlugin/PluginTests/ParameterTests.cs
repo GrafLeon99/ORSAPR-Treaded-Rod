@@ -71,5 +71,6 @@ namespace PluginTests
                 var parameter = new Parameter(defaultValue, minValue, maxValue,defaultValue);
             });
         }
+
     }
 }

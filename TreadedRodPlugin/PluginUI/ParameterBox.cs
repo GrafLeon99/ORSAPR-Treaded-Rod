@@ -11,31 +11,17 @@ namespace PluginUI
     {
         //TODO: RSDN
         /// <summary>
-        /// Сообщение об отсутствии ошибки
+        /// Сообщение об отсутствии ошибки.
         /// </summary>
-        public const string noError = "";
+        public const string NoError = "";
         /// <summary>
-        /// Сообщение об ошибке, при вводе пустой строки 
+        /// Сообщение об ошибке, при вводе пустой строки.
         /// </summary>
-        public const string nullError = "Строка не должна быть пуста.";
+        public const string NullError = "Строка не должна быть пуста.";
         /// <summary>
-        /// Сообщение об ошибке, при вводе неккоректных данных 
+        /// Сообщение об ошибке, при вводе неккоректных данных .
         /// </summary>
-        public const string nonDoubleError = "Значение должно быть числом.";
-
-
-        /// <summary>
-        /// Название поля ввода
-        /// </summary>
-        //TODO: в модель
-        private const string MainLengthInfo = "Длина шпильки (8 < L < 100)";
-        private const string MainDiameterInfo = "Диаметр шпильки (4 < D < 16)";
-        private const string NutLengthInfo = "Длина  гаечной резьбы (8 < L1 < 100)";
-        private const string NutDiameterInfo = "Диаметр гаечной резьбы (4 < D1 < 16)";
-        private const string BoltLengthInfo = "Длина ввинчиваемой резьбы (12 < L0 < 48)";
-        private const string BoltDiameterInfo = "Диаметр ввинчиваемой резьбы (4 < D0 < 16)";
-        private const string NutStepInfo = "Шаг гаечной резьбы (0,5 < S1 < 2)";
-        private const string BoltStepInfo = "Шаг ввинчиваемой резьбы (0,5 < S0 < 2)";
+        public const string NonDoubleError = "Значение должно быть числом.";
 
         /// <summary>
 		/// Имя параметра
@@ -53,60 +39,13 @@ namespace PluginUI
             }
             set
             {
-                switch (value)
+                if (value == ParameterNameTypes.BoltStep || value == ParameterNameTypes.NutStep)
                 {
-                    case ParameterNameTypes.MainDiameter:
-                        {
-                            infoLabel.Text = MainDiameterInfo;
-                            textBox.DropDownStyle = ComboBoxStyle.Simple;
-                            break;
-                        }
-                    case ParameterNameTypes.BoltDiameter:
-                        {
-                            infoLabel.Text = BoltDiameterInfo;
-                            textBox.DropDownStyle = ComboBoxStyle.Simple;
-                            break;
-                        }
-                    case ParameterNameTypes.NutDiameter:
-                        {
-                            infoLabel.Text = NutDiameterInfo;
-                            textBox.DropDownStyle = ComboBoxStyle.Simple;
-                            break;
-                        }
-                    case ParameterNameTypes.MainLength:
-                        {
-                            infoLabel.Text = MainLengthInfo;
-                            textBox.DropDownStyle = ComboBoxStyle.Simple;
-                            break;
-                        }
-                    case ParameterNameTypes.BoltLength:
-                        {
-                            infoLabel.Text = BoltLengthInfo;
-                            textBox.DropDownStyle = ComboBoxStyle.Simple;
-                            break;
-                        }
-                    case ParameterNameTypes.NutLength:
-                        {
-                            infoLabel.Text = NutLengthInfo;
-                            textBox.DropDownStyle = ComboBoxStyle.Simple;
-                            break;
-                        }
-                    case ParameterNameTypes.NutStep:
-                        {
-                            infoLabel.Text = NutStepInfo;
-                            textBox.DropDownStyle = ComboBoxStyle.DropDown;
-                            break;
-                        }
-                    case ParameterNameTypes.BoltStep:
-                        {
-                            infoLabel.Text = BoltStepInfo;
-                            textBox.DropDownStyle = ComboBoxStyle.DropDown;
-                            break;
-                        }
-                    default:
-                        {
-                            break;
-                        }
+                    textBox.DropDownStyle = ComboBoxStyle.DropDown;
+                }
+                else
+                {
+                    textBox.DropDownStyle = ComboBoxStyle.Simple;
                 }
                 _parameterName = value;
             }
@@ -144,7 +83,7 @@ namespace PluginUI
             set 
             {
                 string oldMessage = errorLabel.Text;
-                if (oldMessage != nullError && oldMessage != nonDoubleError)
+                if (oldMessage != NullError && oldMessage != NonDoubleError)
                 {
                     errorLabel.Text = value;
                 }
@@ -161,7 +100,63 @@ namespace PluginUI
         public ParameterBox()
         {
             InitializeComponent();
-            ErrorMessage = noError;
+            ErrorMessage = NoError;
+        }
+
+        /// <summary>
+        /// Возвращает название параметра поля ввода в виде строки.
+        /// </summary>
+        /// <returns cref="string">Название параметра поля ввода</returns>
+        private string GetSelfName()
+        {
+            switch (_parameterName)
+            {
+                case ParameterNameTypes.MainLength:
+                    {
+                        return "Длина шпильки";
+                    }
+                case ParameterNameTypes.NutLength:
+                    {
+                        return "Длина  гаечной резьбы";
+                    }
+                case ParameterNameTypes.BoltLength:
+                    {
+                        return "Длина ввинчиваемой резьбы";
+                    }
+                case ParameterNameTypes.MainDiameter:
+                    {
+                        return "Диаметр шпильки";
+                    }
+                case ParameterNameTypes.NutDiameter:
+                    {
+                        return "Диаметр гаечной резьбы";
+                    }
+                case ParameterNameTypes.BoltDiameter:
+                    {
+                        return "Диаметр ввинчиваемой резьбы";
+                    }
+                case ParameterNameTypes.BoltStep:
+                    {
+                        return "Шаг ввинчиваемой резьбы";
+                    }
+                case ParameterNameTypes.NutStep:
+                    {
+                        return "Шаг гаечной резьбы";
+                    }
+            }
+            return " ";
+        }
+
+        //TODO: в модель
+        /// <summary>
+		/// Изменяет подпись к полю ввода в зависимости от значений параметров  
+		/// </summary>
+        /// <param name="modelParameters">Объект параметров модели</param>
+        public void SetInfoLabelText(ModelParameters modelParameters)
+        {
+            infoLabel.Text = GetSelfName() + ": " + 
+                modelParameters.GetMinValue(_parameterName) + " - " + 
+                modelParameters.GetMaxValue(_parameterName) + " мм";
         }
 
         //TODO: RSDN
@@ -178,14 +173,14 @@ namespace PluginUI
                 {
                     throw new ArgumentException
                         (
-                        nullError
+                        NullError
                         );
                 }
                 if (!double.TryParse(text, out var value))
                 {
                     throw new ArgumentException
                         (
-                        nonDoubleError
+                        NonDoubleError
                         );
                 }
                 Parameter = value;
@@ -195,7 +190,7 @@ namespace PluginUI
                 errorLabel.Text = exception.Message;
                 return;
             }
-            errorLabel.Text = noError;
+            errorLabel.Text = NoError;
             
             if (ParameterChanged != null)
             {

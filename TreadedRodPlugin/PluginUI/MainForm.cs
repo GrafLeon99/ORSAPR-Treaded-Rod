@@ -39,6 +39,7 @@ namespace PluginUI
 			};
 
 			SetDefaultParameters();
+			SetRanges();
 		}
 
 		/// <summary>
@@ -87,7 +88,7 @@ namespace PluginUI
 		{
 			foreach (ParameterBox parameterBox in _parameterBoxes)
 			{
-				if (parameterBox.ErrorMessage != ParameterBox.noError)
+				if (parameterBox.ErrorMessage != ParameterBox.NoError)
 				{
 					return true;
 				}
@@ -96,7 +97,7 @@ namespace PluginUI
 		}
 
 		/// <summary>
-		/// Устанавливает значения параметров по умолчанию.
+		/// Устанавливает значения параметров по умолчанию для всех полей ввода.
 		/// </summary>
 		private void SetDefaultParameters()
 		{
@@ -107,6 +108,17 @@ namespace PluginUI
 			}
 			ValidateAllParameters();
 			checkBox1.Checked = false;
+		}
+
+		/// <summary>
+		/// Устанавливает значения диапазонов параметров для всех полей ввода.
+		/// </summary>
+		private void SetRanges()
+		{
+			foreach (ParameterBox parameterBox in _parameterBoxes)
+			{
+				parameterBox.SetInfoLabelText(_modelParameters);
+			}
 		}
 
 		/// <summary>
@@ -138,7 +150,7 @@ namespace PluginUI
 		{
 			ParameterNameTypes parameterName = parameterBox.ParameterName;
 			double value = parameterBox.Parameter;
-			string errorMessage = ParameterBox.noError;
+			string errorMessage = ParameterBox.NoError;
 			try
 			{
 				_modelParameters.SetValue(parameterName, value);
