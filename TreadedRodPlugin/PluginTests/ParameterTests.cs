@@ -25,7 +25,8 @@ namespace PluginTests
             Assert.AreEqual(parameter.DefaultValue, value);
         }
 
-        [Test(Description = "Позитивный тест конструктора параметра со значением по умолчанию")]
+        [Test(Description = 
+            "Позитивный тест конструктора параметра со значением по умолчанию")]
         public void Test_Parameter_CorrectDefaultValue()
         {
             //Arrange
@@ -49,7 +50,8 @@ namespace PluginTests
         [TestCase(7, 6, 4, Description = "Минимальное значение больше максимального")]
 
         [Test(Description = "Негативный тест конструктора параметра")]
-        public void Test_Parameter_IncorrectValue(double value, double minValue, double maxValue)
+        public void Test_Parameter_IncorrectValue(
+            double value, double minValue, double maxValue)
         {
             //Assert
             Assert.Throws<ArgumentException>(() =>
@@ -61,14 +63,17 @@ namespace PluginTests
 
         [TestCase(2, 3, 4, Description = "Значение по умолчанию меньше минимального")]
         [TestCase(8, 3, 4, Description = "Значение по умолчанию больше максимального")]
-        [Test(Description = "Негативный тест конструктора параметра со значениями по умолчанию")]
-        public void Test_Parameter_IncorrectDefaultValue(double defaultValue, double minValue, double maxValue)
+        [Test(Description = 
+            "Негативный тест конструктора параметра со значениями по умолчанию")]
+        public void Test_Parameter_IncorrectDefaultValue(
+            double defaultValue, double minValue, double maxValue)
         {
             //Assert
             Assert.Throws<ArgumentException>(() =>
             {
                 //Act
-                var parameter = new Parameter(defaultValue, minValue, maxValue,defaultValue);
+                var parameter = new Parameter(
+                    defaultValue, minValue, maxValue,defaultValue);
             });
         }
 

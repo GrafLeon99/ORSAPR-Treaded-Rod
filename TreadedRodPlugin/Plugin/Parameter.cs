@@ -34,7 +34,7 @@ namespace Plugin
 		/// <param name="minValue"> Минимальное значение </param>
 		/// <param name="maxValue"> Максимальное значение </param>
 		/// <returns cref="bool">True, если значение принадлежит диапазону, иначе False</returns>
-		private static bool IsInRange(double value, double minValue, double maxValue)
+		private bool IsInRange(double value, double minValue, double maxValue)
 		{
 			if (value < minValue || value > maxValue)
 			{

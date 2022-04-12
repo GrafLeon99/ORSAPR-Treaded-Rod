@@ -70,7 +70,8 @@ namespace Kompas
             var sketch = (ksEntity)_part.NewEntity((short)Obj3dType.o3d_sketch);
             var sketchDefinition = (ksSketchDefinition)sketch.GetDefinition();
             sketchDefinition.SetPlane(plane);
-            var offsetEntity = (ksEntity)_part.NewEntity((short)Obj3dType.o3d_planeOffset);
+            var offsetEntity = 
+                (ksEntity)_part.NewEntity((short)Obj3dType.o3d_planeOffset);
             var offsetDef = (ksPlaneOffsetDefinition)offsetEntity
                 .GetDefinition();
             offsetDef.SetPlane(plane);
@@ -93,7 +94,8 @@ namespace Kompas
         /// <param name="isChamferReveseSide">Фаска на обратной стороне</param>
         /// <param name="step">Шаг резьбы</param>
         public void CreateElement(double diameter,double length, double offset,
-            bool isTreaded = false, bool isChamfer = false, bool isChamferReveseSide = false, double step = DefaultStep)
+            bool isTreaded = false, bool isChamfer = false, 
+            bool isChamferReveseSide = false, double step = DefaultStep)
         {
             Obj3dType horizontalPlane = Obj3dType.o3d_planeXOY;
             Obj3dType verticalPlane = Obj3dType.o3d_planeXOZ;
@@ -129,7 +131,8 @@ namespace Kompas
         /// <param name="offset">Смещение по оси</param>
         /// <param name="diameter">Диаметр</param>
         /// <returns cref="ksSketchDefinition">Объект свойств эскиза</returns>
-        private ksSketchDefinition CreateCircle(Obj3dType basePlane, double offset, double diameter)
+        private ksSketchDefinition CreateCircle(
+            Obj3dType basePlane, double offset, double diameter)
         {
             ksSketchDefinition sketch = CreateSketch(basePlane, offset);
             Document2D document2d = (Document2D)sketch.BeginEdit();
@@ -232,13 +235,16 @@ namespace Kompas
         /// <param name="length">Размер фаски</param>
         private void CreateChamfer(ksEntity face, double length)
         {
-            ksEntity chamfer = (ksEntity)_part.NewEntity((short)ksObj3dTypeEnum.o3d_chamfer);
-            ksChamferDefinition chamferDefinition = (ksChamferDefinition)chamfer.GetDefinition();
+            ksEntity chamfer = 
+                (ksEntity)_part.NewEntity((short)ksObj3dTypeEnum.o3d_chamfer);
+            ksChamferDefinition chamferDefinition = 
+                (ksChamferDefinition)chamfer.GetDefinition();
 
             chamferDefinition.tangent = false;
             chamferDefinition.SetChamferParam(true, length, length);
 
-            ksEntityCollection entityCollectionChamfer = (ksEntityCollection)chamferDefinition.array();
+            ksEntityCollection entityCollectionChamfer = 
+                (ksEntityCollection)chamferDefinition.array();
             entityCollectionChamfer.Add(face);
 
             chamfer.Create();

@@ -24,15 +24,24 @@ namespace PluginTests
             var parameters = new ModelParameters();
 
             //Assert
-            Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.MainDiameter), mainDiameter);
-            Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.NutDiameter), nutDiameter);
-            Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.BoltDiameter), boltDiameter);
-            Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.MainLength), mainLength);
-            Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.NutLength), nutLength);
-            Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.BoltLength), boltLength);
-            Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.NutStep), nutStep);
-            Assert.AreEqual(parameters.GetDefaultValue(ParameterNameTypes.BoltStep), boltStep);
-            Assert.AreEqual(parameters.IsChamfer, isChamfer);
+            Assert.AreEqual(
+                parameters.GetDefaultValue(ParameterNameTypes.MainDiameter), mainDiameter);
+            Assert.AreEqual(
+                parameters.GetDefaultValue(ParameterNameTypes.NutDiameter), nutDiameter);
+            Assert.AreEqual(
+                parameters.GetDefaultValue(ParameterNameTypes.BoltDiameter), boltDiameter);
+            Assert.AreEqual(
+                parameters.GetDefaultValue(ParameterNameTypes.MainLength), mainLength);
+            Assert.AreEqual(
+                parameters.GetDefaultValue(ParameterNameTypes.NutLength), nutLength);
+            Assert.AreEqual(
+                parameters.GetDefaultValue(ParameterNameTypes.BoltLength), boltLength);
+            Assert.AreEqual(
+                parameters.GetDefaultValue(ParameterNameTypes.NutStep), nutStep);
+            Assert.AreEqual(
+                parameters.GetDefaultValue(ParameterNameTypes.BoltStep), boltStep);
+            Assert.AreEqual(
+                parameters.IsChamfer, isChamfer);
         }
         //TODO: UTF8?
 
@@ -63,15 +72,24 @@ namespace PluginTests
             parameters.IsChamfer = isChamfer;
 
             //Assert
-            Assert.AreEqual(parameters.GetValue(ParameterNameTypes.MainDiameter), mainDiameter);
-            Assert.AreEqual(parameters.GetValue(ParameterNameTypes.NutDiameter), nutDiameter);
-            Assert.AreEqual(parameters.GetValue(ParameterNameTypes.BoltDiameter), boltDiameter);
-            Assert.AreEqual(parameters.GetValue(ParameterNameTypes.MainLength), mainLength);
-            Assert.AreEqual(parameters.GetValue(ParameterNameTypes.NutLength), nutLength);
-            Assert.AreEqual(parameters.GetValue(ParameterNameTypes.BoltLength), boltLength);
-            Assert.AreEqual(parameters.GetValue(ParameterNameTypes.NutStep), nutStep);
-            Assert.AreEqual(parameters.GetValue(ParameterNameTypes.BoltStep), boltStep);
-            Assert.AreEqual(parameters.IsChamfer, isChamfer);
+            Assert.AreEqual(
+                parameters.GetValue(ParameterNameTypes.MainDiameter), mainDiameter);
+            Assert.AreEqual(
+                parameters.GetValue(ParameterNameTypes.NutDiameter), nutDiameter);
+            Assert.AreEqual(
+                parameters.GetValue(ParameterNameTypes.BoltDiameter), boltDiameter);
+            Assert.AreEqual(
+                parameters.GetValue(ParameterNameTypes.MainLength), mainLength);
+            Assert.AreEqual(
+                parameters.GetValue(ParameterNameTypes.NutLength), nutLength);
+            Assert.AreEqual(
+                parameters.GetValue(ParameterNameTypes.BoltLength), boltLength);
+            Assert.AreEqual(
+                parameters.GetValue(ParameterNameTypes.NutStep), nutStep);
+            Assert.AreEqual(
+                parameters.GetValue(ParameterNameTypes.BoltStep), boltStep);
+            Assert.AreEqual(
+                parameters.IsChamfer, isChamfer);
         }
 
 
@@ -100,8 +118,10 @@ namespace PluginTests
         [TestCase(ParameterNameTypes.BoltLength,
             Description = "BoltLength")]
 
-        [Test(Description = "Позитивный тест геттеров минимальных и максимальных значений")]
-        public void Test_SetValue_CorrectMaxMinValue(ParameterNameTypes parameterName)
+        [Test(Description = 
+            "Позитивный тест геттеров минимальных и максимальных значений")]
+        public void Test_SetValue_CorrectMaxMinValue(
+            ParameterNameTypes parameterName)
         {
             //Arrange
             var parameters = new ModelParameters();
@@ -141,7 +161,8 @@ namespace PluginTests
             Description = "BoltLength > max")]
 
         [Test(Description = "Негативный тест сеттера")]
-        public void Test_SetValue_IncorrectValue(ParameterNameTypes parameter, double value)
+        public void Test_SetValue_IncorrectValue(
+            ParameterNameTypes parameter, double value)
         {
             //Arrange
             var parameters = new ModelParameters();
@@ -166,7 +187,8 @@ namespace PluginTests
         [TestCase(ParameterNameTypes.BoltLength, 15, 16,
             Description = "BoltLength > BoltDiameter")]
 
-        [Test(Description = "Негативный тест сеттера для зависимости диаметр-диаметр")]
+        [Test(Description = 
+            "Негативный тест сеттера для зависимости диаметр-диаметр")]
         //TODO: RSDN
         public void Test_SetValue_IncorrectDependedDiameterValue(
             ParameterNameTypes parameter, double value, double dependentValue)
