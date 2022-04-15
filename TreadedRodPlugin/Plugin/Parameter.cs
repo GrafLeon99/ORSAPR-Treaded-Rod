@@ -26,7 +26,6 @@ namespace Plugin
 		/// </summary>
 		private double _defaultValue;
 
-		//TODO:
 		/// <summary>
 		/// Проверяет, принадлежит ли значение диапазону.
 		/// </summary>

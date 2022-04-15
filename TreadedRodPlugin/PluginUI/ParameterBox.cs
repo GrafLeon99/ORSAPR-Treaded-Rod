@@ -9,7 +9,6 @@ namespace PluginUI
     /// </summary>
     public partial class ParameterBox : UserControl
     {
-        //TODO: RSDN
         /// <summary>
         /// Сообщение об отсутствии ошибки.
         /// </summary>
@@ -146,8 +145,7 @@ namespace PluginUI
             }
             return " ";
         }
-
-        //TODO: в модель
+        
         /// <summary>
 		/// Изменяет подпись к полю ввода в зависимости от значений параметров  
 		/// </summary>
@@ -158,8 +156,7 @@ namespace PluginUI
                 modelParameters.GetMinValue(_parameterName) + " - " + 
                 modelParameters.GetMaxValue(_parameterName) + " мм";
         }
-
-        //TODO: RSDN
+        
         /// <summary>
 		/// Обрабатывает событие изменения текста в textBox
 		/// </summary>

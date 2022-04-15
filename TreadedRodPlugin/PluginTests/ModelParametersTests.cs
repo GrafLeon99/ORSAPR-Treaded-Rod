@@ -43,7 +43,6 @@ namespace PluginTests
             Assert.AreEqual(
                 parameters.IsChamfer, isChamfer);
         }
-        //TODO: UTF8?
 
         [Test(Description = "Позитивный тест сеттеров и геттеров")]
         public void Test_SetValue_CorrectValue()
@@ -133,8 +132,7 @@ namespace PluginTests
             //Assert
             Assert.AreNotEqual(maxValue, minValue);
         }
-
-        //TODO: UTF8?
+        
         [TestCase(ParameterNameTypes.MainDiameter, 0,
             Description = "MainDiameter < min")]
         [TestCase(ParameterNameTypes.NutDiameter, 0,
@@ -186,10 +184,8 @@ namespace PluginTests
             Description = "NutLength > NutDiameter")]
         [TestCase(ParameterNameTypes.BoltLength, 15, 16,
             Description = "BoltLength > BoltDiameter")]
-
         [Test(Description = 
             "Негативный тест сеттера для зависимости диаметр-диаметр")]
-        //TODO: RSDN
         public void Test_SetValue_IncorrectDependedDiameterValue(
             ParameterNameTypes parameter, double value, double dependentValue)
         {
